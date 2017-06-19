@@ -1,0 +1,12 @@
+a = read.table('household_power_consumption.txt', header=T,sep=";")
+a$Date <- as.Date(a$Date, format="%d/%m/%Y")
+c <- a[(a$Date=="2007-02-01") | (a$Date=="2007-02-02"),]
+Global_active_power <- as.numeric(as.character(c$Global_active_power))
+Global_reactive_power <- as.numeric(as.character(c$Global_reactive_power))
+Voltage <- as.numeric(as.character(c$Voltage))
+Sub_metering_1 <- as.numeric(as.character(c$Sub_metering_1))
+Sub_metering_2 <- as.numeric(as.character(c$Sub_metering_2))
+Sub_metering_3 <- as.numeric(as.character(c$Sub_metering_3))
+hist(Global_active_power, main = paste("Global Active Power"), col="red", xlab="Global Active Power (kilowatts)")
+dev.copy(png, file="plot1.png", width=480, height=480)
+dev.off()
